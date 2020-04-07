@@ -1,7 +1,7 @@
 import json
 import pickle
 
-class StorageSystem:
+class StorageService:
     def __init__(self):
          self.__authenticationFile = "AuthenticationFile.py"
          self.__usernameToFileNameMappingFile = "UsernameToFileNameMappingFile.py"
@@ -37,3 +37,6 @@ class StorageSystem:
     def storeTasks(self, listOfTasks, filename):
         fd = open(filename, 'w')
         pickle.dumps(fd, listOfTasks)
+        
+    def getListOfTasks(self, username):
+        
