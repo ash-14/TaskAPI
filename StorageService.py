@@ -8,26 +8,26 @@ class StorageService:
         
     def updateAuthenticationFile(self, authenticationMappingJSON):
         fd = open(self.__authenticationFile, 'w')
-        json.dumps(fd, authenticationMappingJSON)
+        pickle.dump(fd, authenticationMappingJSON)
         return
     
     def updateUsernameToFileNameMapppingFile(self, usernameToFileNameMappingJSON):
         fd = open(self.__usernameToFileNameMappingFile, 'w')
-        json.dumps(fd, usernameToFileNameMappingJSON)
+        pickle.dump(fd, usernameToFileNameMappingJSON)
         return
     
     def loadUsernameToFileNameMappingFile(self):
         fd = open(self.__usernameToFileNameMappingFile, 'r')
-        jsonMap = json.loads(fd);
+        jsonMap = pickle.load(fd)
         return jsonMap
     
     def loadAuthenticationFile(self):
         fd = open(self.__authenticationFile, 'r')
-        jsonMap = json.loads(fd);
+        jsonMap = json.load(fd);
         return jsonMap
     
     def getUserSpace(self, username):
-        filename, logFile = self.loadUsernameToFileNameMappingFile()
+        filename, logFile = self.loadUsernameToFileNameMappingFile()[username]
         return filename, logFile
     
     def logEvent(self, logFile, event):
@@ -36,7 +36,9 @@ class StorageService:
         
     def storeTasks(self, listOfTasks, filename):
         fd = open(filename, 'w')
-        pickle.dumps(fd, listOfTasks)
+        pickle.dump(fd, listOfTasks)
         
-    def getListOfTasks(self, username):
+    def getListOfTasks(self, filename):
+        fd = open(filename, 'r')
+        return pickle.load(fd)
         
