@@ -3,8 +3,8 @@ import pickle
 
 class StorageService:
     def __init__(self):
-         self.__authenticationFile = "AuthenticationFile.py"
-         self.__usernameToFileNameMappingFile = "UsernameToFileNameMappingFile.py"
+         self.__authenticationFile = "/data/AuthenticationFile.py"
+         self.__usernameToFileNameMappingFile = "/data/UsernameToFileNameMappingFile.py"
         
     def updateAuthenticationFile(self, authenticationMappingJSON):
         fd = open(self.__authenticationFile, 'w')
@@ -29,6 +29,12 @@ class StorageService:
     def getUserSpace(self, username):
         filename, logFile = self.loadUsernameToFileNameMappingFile()[username]
         return filename, logFile
+    
+    def addUserSpace(self, username):
+        usernameToFileNameMapping = self.loadUsernameToFileNameMappingFile()
+        usernameToFileNameMapping[username] = [username+'_data', username+'_log']
+        self.updateUsernameToFileNameMapppingFile(usernameToFileNameMapping)
+        return
     
     def logEvent(self, logFile, event):
         fd = open(logFile, 'w')
