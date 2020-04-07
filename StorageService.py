@@ -32,12 +32,15 @@ class StorageService:
     
     def addUserSpace(self, username):
         usernameToFileNameMapping = self.loadUsernameToFileNameMappingFile()
-        usernameToFileNameMapping[username] = [username+'_data', username+'_log']
+        usernameToFileNameMapping[username] = ['/data/'+username+'_data', '/data/'+username+'_log']
+        filename, logFile = usernameToFileNameMapping[username]
         self.updateUsernameToFileNameMapppingFile(usernameToFileNameMapping)
+        self.storeTasks({}, filename)
+        self.logEvent(logFile, "task created for user "+ username +"\n)
         return
     
     def logEvent(self, logFile, event):
-        fd = open(logFile, 'w')
+        fd = open(logFile, 'a')
         fd.write(event + "\n")
         
     def storeTasks(self, listOfTasks, filename):
