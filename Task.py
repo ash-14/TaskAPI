@@ -1,5 +1,5 @@
 class Task:
-    def __init__(self, taskId, taskTitle, taskDueDate, taskStatus):
+    def __init__(self, taskId, taskTitle, taskDueDate, taskStatus = 'Todo'):
         self.taskId = taskId
         self.taskTitle = taskTitle
         self.taskDueDate = taskDueDate
