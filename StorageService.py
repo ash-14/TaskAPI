@@ -38,7 +38,7 @@ class StorageService:
         fd = open(filename, 'w')
         pickle.dump(fd, listOfTasks)
         
-    def getListOfTasks(self, filename):
+    def getTasks(self, filename):
         fd = open(filename, 'r')
         return pickle.load(fd)
         
