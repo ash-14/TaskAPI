@@ -36,4 +36,4 @@ class StorageSystem:
         
     def storeTasks(self, listOfTasks, filename):
         fd = open(filename, 'w')
-        pickle.dumps(fd)
+        pickle.dumps(fd, listOfTasks)
