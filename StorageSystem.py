@@ -3,8 +3,8 @@ import pickle
 
 class StorageSystem:
     def __init__(self):
-         self.__authenticationFile = "authenticationFile.py"
-         self.__usernameToFileNameMappingFile = "usernameToFileNameMappingFile.py"
+         self.__authenticationFile = "AuthenticationFile.py"
+         self.__usernameToFileNameMappingFile = "UsernameToFileNameMappingFile.py"
         
     def updateAuthenticationFile(self, authenticationMappingJSON):
         fd = open(self.__authenticationFile, 'w')
