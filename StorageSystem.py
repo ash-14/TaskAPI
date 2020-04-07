@@ -34,3 +34,6 @@ class StorageSystem:
         fd = open(logFile, 'w')
         fd.write(event + "\n")
         
+    def storeTasks(self, listOfTasks, filename):
+        fd = open(filename, 'w')
+        pickle.dumps(fd)
