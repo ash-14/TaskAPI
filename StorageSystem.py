@@ -30,7 +30,7 @@ class StorageSystem:
         filename, logFile = self.loadUsernameToFileNameMappingFile()
         return filename, logFile
     
-    def logEvent(logFile, event):
+    def logEvent(self, logFile, event):
         fd = open(logFile, 'w')
         fd.write(event + "\n")
         
