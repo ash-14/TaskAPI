@@ -1,6 +1,6 @@
 import hashlib
 
-class AuthenticationSystem:
+class AuthenticationService:
     def __init__(self):
         self.__storageSystemClient = new StorageSystem();
         
