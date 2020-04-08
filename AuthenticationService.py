@@ -2,7 +2,7 @@ import hashlib
 
 class AuthenticationService:
     def __init__(self):
-        self.storageSystemClient = new StorageSystem();
+        self.storageSystemClient = StorageSystem();
         
     def authenticateUser(self, username, password):
         authenticationMap = self.storageSystemClient.loadAuthenticationFile();
