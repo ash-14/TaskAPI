@@ -1,7 +1,7 @@
 class TaskApp:
     def __init__(self, username):
         self.username = username
-        self.storageServiceClient = new StorageService()
+        self.storageServiceClient = StorageService()
         self.filename, self.logFile = self.storageServiceClient.getUserSpace(username)
         return
 
