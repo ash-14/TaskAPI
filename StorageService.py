@@ -3,26 +3,26 @@ import pickle
 
 class StorageService:
     def __init__(self):
-         self.__authenticationFile = "/data/AuthenticationFile.py"
-         self.__usernameToFileNameMappingFile = "/data/UsernameToFileNameMappingFile.py"
+         self.__authenticationFile = "/data/AuthenticationFile.pickle"
+         self.__usernameToFileNameMappingFile = "/data/UsernameToFileNameMappingFile.pickle"
         
     def updateAuthenticationFile(self, authenticationMappingJSON):
-        fd = open(self.__authenticationFile, 'w')
+        fd = open(self.__authenticationFile, 'wb')
         pickle.dump(fd, authenticationMappingJSON)
         return
     
     def updateUsernameToFileNameMapppingFile(self, usernameToFileNameMappingJSON):
-        fd = open(self.__usernameToFileNameMappingFile, 'w')
+        fd = open(self.__usernameToFileNameMappingFile, 'wb')
         pickle.dump(fd, usernameToFileNameMappingJSON)
         return
     
     def loadUsernameToFileNameMappingFile(self):
-        fd = open(self.__usernameToFileNameMappingFile, 'r')
+        fd = open(self.__usernameToFileNameMappingFile, 'rb')
         jsonMap = pickle.load(fd)
         return jsonMap
     
     def loadAuthenticationFile(self):
-        fd = open(self.__authenticationFile, 'r')
+        fd = open(self.__authenticationFile, 'rb')
         jsonMap = json.load(fd);
         return jsonMap
     
@@ -32,7 +32,7 @@ class StorageService:
     
     def addUserSpace(self, username):
         usernameToFileNameMapping = self.loadUsernameToFileNameMappingFile()
-        usernameToFileNameMapping[username] = ['/data/'+username+'_data', '/data/'+username+'_log']
+        usernameToFileNameMapping[username] = ['/data/'+username+'_data.pickle', '/data/'+username+'.log']
         filename, logFile = usernameToFileNameMapping[username]
         self.updateUsernameToFileNameMapppingFile(usernameToFileNameMapping)
         self.storeTasks({}, filename)
@@ -44,10 +44,10 @@ class StorageService:
         fd.write(event + "\n")
         
     def storeTasks(self, listOfTasks, filename):
-        fd = open(filename, 'w')
+        fd = open(filename, 'wb')
         pickle.dump(fd, listOfTasks)
         
     def getTasks(self, filename):
-        fd = open(filename, 'r')
+        fd = open(filename, 'rb')
         return pickle.load(fd)
         
